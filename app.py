@@ -66,7 +66,7 @@ def preprocess_data():
 
 # Preprocess data and load the trained model
 users, products, interactions, user2user_encoded, product2product_encoded, productencoded2product = preprocess_data()
-model = tf.keras.models.load_model('model/best_model.keras')
+model = tf.keras.models.load_model('model/collaborative/collaborative_model.keras')
 
 def recommend_products(user_id, top_n=30):
     # Check if user_id is in the encoding map
