@@ -66,13 +66,14 @@ def preprocess_data():
 
 # Preprocess data and load the trained model
 users, products, interactions, user2user_encoded, product2product_encoded, productencoded2product = preprocess_data()
-model_path = os.path.join('model', 'best_model.keras')
-model = tf.keras.models.load_model(model_path)
+model = tf.keras.models.load_model('model/best_model.keras')
 
 def recommend_products(user_id, top_n=30):
     # Check if user_id is in the encoding map
     if user_id not in user2user_encoded:
-        return []
+        # If user_id is not in the encoding map, return fallback recommendations
+        fallback_recommendations = products.sample(n=top_n)
+        return fallback_recommendations[['name', 'category', 'price']].to_dict(orient='records')
 
     user_encoded = user2user_encoded[user_id]
     # Get all encoded product IDs as a list of integers
@@ -92,6 +93,7 @@ def recommend_products(user_id, top_n=30):
 
     # Filter the products DataFrame to get recommended products
     recommended_products = products[products['_id'].isin(recommended_product_ids)]
+    
     return recommended_products[['name', 'category', 'price']].to_dict(orient='records')
 
 @app.route('/recommend', methods=['GET'])
@@ -104,4 +106,4 @@ def recommend():
     return jsonify({"recommendations": recommendations})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0" , port=8000)
