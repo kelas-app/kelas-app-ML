@@ -81,11 +81,11 @@ y_test = test['interaction_value'].values
 
 # Load Model
 # Update the model and weight file paths
-with open("tummyfit_model.json", "r") as json_file:
+with open("kelas_model.json", "r") as json_file:
     loaded_model_json = json_file.read()
 
 model = tf.keras.models.model_from_json(loaded_model_json)
-model.load_weights("tummyfit_model_weights.h5")
+model.load_weights("kelas_model_weights.h5")
 
 # Compile loaded model
 model.compile(optimizer='rmsprop', loss='mean_squared_error')
