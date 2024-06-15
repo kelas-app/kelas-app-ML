@@ -178,7 +178,8 @@ def semantic_search_endpoint():
     
     # Perform semantic search
     results = semantic_search(query, embeddings.numpy(), titles, embed)
-    return jsonify(results)
+    sanitized_results = sanitize_data(results)
+    return jsonify(sanitized_results)
 
 # Run the Flask application
 if __name__ == '__main__':
