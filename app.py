@@ -73,10 +73,16 @@ with open(model_path, 'r') as file:
 model = tf.keras.models.model_from_json(model_json)
 model.load_weights(weights_path)
 
+def get_popular_products(top_n=30):
+    # Assume 'interactions_expanded' has a column 'interaction_value' indicating the popularity of products
+    popular_products = interactions_expanded.groupby('product_id')['interaction_value'].sum().nlargest(top_n).index
+    popular_products_df = products[products['_id'].isin(popular_products)]
+    return popular_products_df.to_dict(orient='records')
+
 # Function to recommend products for a specific user
 def recommend_products(user_id, top_n=30):
     if user_id not in user2user_encoded:
-        return []
+        return get_popular_products(top_n)
     
     user_encoded = user2user_encoded[user_id]
     product_ids = list(product2product_encoded.values())
@@ -123,25 +129,34 @@ def load_semantic_model(model_path, weights_path):
     model.load_weights(weights_path)
     return model
 
+def sanitize_data(data):
+    if isinstance(data, list):
+        return [sanitize_data(item) for item in data]
+    elif isinstance(data, dict):
+        return {key: sanitize_data(value) for key, value in data.items()}
+    elif isinstance(data, float) and (np.isnan(data) or np.isinf(data)):
+        return None
+    else:
+        return data
+
 # Flask application setup
 app = Flask(__name__)
 
 # Endpoint for collaborative filtering recommendation
 @app.route('/recommend', methods=['GET'])
 def recommend():
-    data = request.json
-    user_id = data.get('user_id')
+    user_id = request.args.get('user_id')
     if not user_id:
         return jsonify({'error': 'User ID is required'}), 400
-    
+
     recommended_products = recommend_products(user_id)
-    return jsonify(recommended_products)
+    sanitized_products = sanitize_data(recommended_products)
+    return jsonify(sanitized_products)
 
 # Endpoint for semantic search
-@app.route('/semantic-search', methods=['POST'])
+@app.route('/semantic-search', methods=['GET'])
 def semantic_search_endpoint():
-    data = request.json
-    query = data.get('query')
+    query = request.args.get('query')
     if not query:
         return jsonify({'error': 'Query parameter "query" is required'}), 400
     
@@ -167,4 +182,4 @@ def semantic_search_endpoint():
 
 # Run the Flask application
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0" , port=8000)
