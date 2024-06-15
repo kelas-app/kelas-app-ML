@@ -1,15 +1,30 @@
+from flask import Flask, request, jsonify
 import os
 import requests
 import pandas as pd
 import numpy as np
 import tensorflow as tf
-from flask import Flask, request, jsonify
 from dotenv import load_dotenv
+import json
+from sklearn.metrics.pairwise import cosine_similarity
+import tensorflow_hub as hub
 
-app = Flask(__name__)
-
-# Load environment variables
+# Load environment variables from .env file
 load_dotenv()
+
+# Function to fetch data from APIs
+def fetch_data(url, headers):
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()  # Raises an HTTPError for bad requests
+        data = pd.DataFrame(response.json())
+        print(f"Data successfully fetched from {url}")
+        return data
+    except requests.RequestException as e:
+        print(f'Failed to fetch data from {url}: {str(e)}')
+        return pd.DataFrame()
+
+# Load JWT token from environment variables
 jwt_token = os.getenv('JWT_TOKEN')
 headers = {'Authorization': f'Bearer {jwt_token}'}
 
@@ -20,90 +35,136 @@ api_urls = {
     'products': 'http://161.97.109.65:3000/api/products'
 }
 
-def fetch_data(url, headers):
-    try:
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()  # Raises an HTTPError for bad requests
-        return pd.DataFrame(response.json())
-    except requests.RequestException as e:
-        print(f'Failed to fetch data from {url}: {str(e)}')
-        return pd.DataFrame()
+# Fetch data from APIs
+users = fetch_data(api_urls['users'], headers)
+products = fetch_data(api_urls['products'], headers)
+interactions = fetch_data(api_urls['interactions'], headers)
 
-def preprocess_data():
-    # Fetch data from APIs
-    users = fetch_data(api_urls['users'], headers)
-    products = fetch_data(api_urls['products'], headers)
-    interactions = fetch_data(api_urls['interactions'], headers)
+# Normalize interactions data if necessary
+if 'interactions' in interactions.columns:
+    interactions_expanded = pd.json_normalize(interactions['interactions'])
+else:
+    interactions_expanded = pd.json_normalize(interactions.iloc[:, 0])
 
-    if users.empty or products.empty or interactions.empty:
-        print("Data fetching failed, check errors and retry.")
-        return None, None, None
+# Rename and preprocess columns for collaborative filtering
+interactions_expanded['user_id'] = interactions_expanded['userId']
+interactions_expanded['product_id'] = interactions_expanded['productId']
+interactions_expanded['interaction_value'] = interactions_expanded['interactionValue']
 
-    # Normalize the 'interactions' column if it contains dictionaries
-    if 'interactions' in interactions.columns:
-        interactions_expanded = pd.json_normalize(interactions['interactions'])
-    else:
-        interactions_expanded = pd.json_normalize(interactions.iloc[:, 0])
+# Encode user_id and product_id for collaborative filtering
+user_ids = interactions_expanded['user_id'].unique().tolist()
+product_ids = interactions_expanded['product_id'].unique().tolist()
 
-    # Assuming the JSON data has keys 'userId', 'productId', and 'interactionValue'
-    interactions_expanded['user_id'] = interactions_expanded['userId']
-    interactions_expanded['product_id'] = interactions_expanded['productId']
-    interactions_expanded['interaction_value'] = interactions_expanded['interactionValue']
+user2user_encoded = {x: i for i, x in enumerate(user_ids)}
+product2product_encoded = {x: i for i, x in enumerate(product_ids)}
+userencoded2user = {i: x for i, x in enumerate(user_ids)}
+productencoded2product = {i: x for i, x in enumerate(product_ids)}
 
-    # Encode user_id and product_id
-    user_ids = interactions_expanded['user_id'].unique().tolist()
-    product_ids = interactions_expanded['product_id'].unique().tolist()
+interactions_expanded['user'] = interactions_expanded['user_id'].map(user2user_encoded)
+interactions_expanded['product'] = interactions_expanded['product_id'].map(product2product_encoded)
 
-    user2user_encoded = {x: i for i, x in enumerate(user_ids)}
-    product2product_encoded = {x: i for i, x in enumerate(product_ids)}
-    userencoded2user = {i: x for i, x in enumerate(user_ids)}
-    productencoded2product = {i: x for i, x in enumerate(product_ids)}
+# Load collaborative filtering model and weights
+model_path = os.path.join('config', 'kelas_config.json')
+weights_path = os.path.join('weights', 'kelas_model.weights.h5')
 
-    interactions_expanded['user'] = interactions_expanded['user_id'].map(user2user_encoded)
-    interactions_expanded['product'] = interactions_expanded['product_id'].map(product2product_encoded)
+with open(model_path, 'r') as file:
+    model_json = file.read()
 
-    return users, products, interactions_expanded, user2user_encoded, product2product_encoded, productencoded2product
+model = tf.keras.models.model_from_json(model_json)
+model.load_weights(weights_path)
 
-# Preprocess data and load the trained model
-users, products, interactions, user2user_encoded, product2product_encoded, productencoded2product = preprocess_data()
-model = tf.keras.models.load_model('model/collaborative/collaborative_model.keras')
-
+# Function to recommend products for a specific user
 def recommend_products(user_id, top_n=30):
-    # Check if user_id is in the encoding map
     if user_id not in user2user_encoded:
-        # If user_id is not in the encoding map, return fallback recommendations
-        fallback_recommendations = products.sample(n=top_n)
-        return fallback_recommendations[['name', 'category', 'price']].to_dict(orient='records')
-
+        return []
+    
     user_encoded = user2user_encoded[user_id]
-    # Get all encoded product IDs as a list of integers
     product_ids = list(product2product_encoded.values())
 
-    # Create user-product array for prediction
-    user_product_array = np.array([[user_encoded] * len(product_ids), product_ids]).T
-
-    # Predict interaction values using the model
+    user_product_array = np.array([[user_encoded] * len(product_ids), product_ids]).T.astype(int)
     predictions = model.predict([user_product_array[:, 0], user_product_array[:, 1]])
     predictions = predictions.flatten()
 
-    # Get top N product indices
     top_indices = predictions.argsort()[-top_n:][::-1]
-    # Decode the top indices to product IDs
     recommended_product_ids = [productencoded2product[x] for x in top_indices]
 
-    # Filter the products DataFrame to get recommended products
     recommended_products = products[products['_id'].isin(recommended_product_ids)]
-    
-    return recommended_products[['name', 'category', 'price']].to_dict(orient='records')
+    return recommended_products.to_dict(orient='records')
 
+# Function to load Universal Sentence Encoder from TensorFlow Hub
+def load_embedding_model():
+    return hub.load("https://tfhub.dev/google/universal-sentence-encoder/4")
+
+# Function to embed text using Universal Sentence Encoder
+def embed_text(texts, embed_model):
+    embeddings = embed_model(texts)
+    return embeddings.numpy()
+
+# Function for semantic search based on cosine similarity
+def semantic_search(query, embeddings, texts, embed_model, top_k=10):
+    # Embed the query
+    query_embedding = embed_model([query]).numpy()
+    
+    # Calculate cosine similarities
+    similarities = cosine_similarity(query_embedding, embeddings).flatten()
+    
+    # Get indices of top k similar products
+    top_k_indices = np.argsort(similarities)[-top_k:][::-1]
+    
+    # Retrieve top k products
+    results = products.iloc[top_k_indices]
+    return results.to_dict(orient='records')
+
+# Load the semantic model
+def load_semantic_model(model_path, weights_path):
+    with open(model_path, "r") as json_file:
+        model_json = json_file.read()
+    model = tf.keras.models.model_from_json(model_json)
+    model.load_weights(weights_path)
+    return model
+
+# Flask application setup
+app = Flask(__name__)
+
+# Endpoint for collaborative filtering recommendation
 @app.route('/recommend', methods=['GET'])
 def recommend():
-    user_id = request.args.get('user_id')
+    data = request.json
+    user_id = data.get('user_id')
     if not user_id:
-        return jsonify({"error": "User ID is required"}), 400
+        return jsonify({'error': 'User ID is required'}), 400
+    
+    recommended_products = recommend_products(user_id)
+    return jsonify(recommended_products)
 
-    recommendations = recommend_products(user_id)
-    return jsonify({"recommendations": recommendations})
+# Endpoint for semantic search
+@app.route('/semantic-search', methods=['POST'])
+def semantic_search_endpoint():
+    data = request.json
+    query = data.get('query')
+    if not query:
+        return jsonify({'error': 'Query parameter "query" is required'}), 400
+    
+    # Load Universal Sentence Encoder
+    embed = load_embedding_model()
+    
+    # Prepare text data for embedding
+    titles = products['name'].tolist()
+    labels = products['category'].tolist()
+    combined_text = [f"{label} {title}" for label, title in zip(labels, titles)]
+    
+    # Generate embeddings for the product descriptions
+    embeddings = embed(combined_text)
 
+    # Load semantic model
+    model_path = os.path.join('config', 'semanticmodel_config.json')
+    weights_path = os.path.join('weights', 'semanticmodel.weights.h5')
+    semantic_model = load_semantic_model(model_path, weights_path)
+    
+    # Perform semantic search
+    results = semantic_search(query, embeddings.numpy(), titles, embed)
+    return jsonify(results)
+
+# Run the Flask application
 if __name__ == '__main__':
-    app.run(host="0.0.0.0" , port=8000)
+    app.run(debug=True)
