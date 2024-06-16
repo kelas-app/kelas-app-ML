@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify, g
 import os
-import requests
 import pandas as pd
 import numpy as np
 import tensorflow as tf
@@ -8,21 +7,11 @@ from dotenv import load_dotenv
 import json
 from sklearn.metrics.pairwise import cosine_similarity
 import tensorflow_hub as hub
+import aiohttp
+import asyncio
 
 # Load environment variables from .env file
 load_dotenv()
-
-# Function to fetch data from APIs
-def fetch_data(url, headers):
-    try:
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()  # Raises an HTTPError for bad requests
-        data = pd.DataFrame(response.json())
-        print(f"Data successfully fetched from {url}")
-        return data
-    except requests.RequestException as e:
-        print(f'Failed to fetch data from {url}: {str(e)}')
-        return pd.DataFrame()
 
 # Load JWT token from environment variables
 jwt_token = os.getenv('JWT_TOKEN')
@@ -68,8 +57,9 @@ def semantic_search(query, embeddings, texts, embed_model, top_k=10):
     top_k_indices = np.argsort(similarities)[-top_k:][::-1]
     
     # Retrieve top k products
-    results = texts.iloc[top_k_indices]
-    return results.to_dict(orient='records')
+    results = texts.iloc[top_k_indices].tolist()  # Convert Series to list of titles
+    
+    return results
 
 # Function to sanitize data
 def sanitize_data(data):
@@ -82,15 +72,38 @@ def sanitize_data(data):
     else:
         return data
 
+# Function to fetch data from APIs asynchronously
+async def fetch_data(session, url, headers):
+    try:
+        async with session.get(url, headers=headers) as response:
+            response.raise_for_status()  # Raises an HTTPError for bad requests
+            data = await response.json()
+            data_df = pd.DataFrame(data)
+            print(f"Data successfully fetched from {url}")
+            return data_df
+    except aiohttp.ClientError as e:
+        print(f'Failed to fetch data from {url}: {str(e)}')
+        return pd.DataFrame()
+
 # Flask application setup
 app = Flask(__name__)
 
 # Function to fetch and store data in Flask global context (g)
+async def before_request():
+    async with aiohttp.ClientSession() as session:
+        users = await fetch_data(session, api_urls['users'], headers)
+        products = await fetch_data(session, api_urls['products'], headers)
+        interactions = await fetch_data(session, api_urls['interactions'], headers)
+        g.users = users
+        g.products = products
+        g.interactions = interactions
+
+# Run the before_request function before each request
 @app.before_request
-def before_request():
-    g.users = fetch_data(api_urls['users'], headers)
-    g.products = fetch_data(api_urls['products'], headers)
-    g.interactions = fetch_data(api_urls['interactions'], headers)
+def handle_before_request():
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    loop.run_until_complete(before_request())
 
 # Endpoint for collaborative filtering recommendation
 @app.route('/recommend', methods=['GET'])
@@ -176,6 +189,7 @@ def semantic_search_endpoint():
     # Perform semantic search
     results = semantic_search(query, embeddings, g.products['name'], embed)
     sanitized_results = sanitize_data(results)
+    
     return jsonify(sanitized_results)
 
 # Run the Flask application
