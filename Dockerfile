@@ -7,13 +7,14 @@ WORKDIR /app
 # Copy the Python script and other necessary files
 COPY app.py .
 COPY requirements.txt .
-COPY model ./model
 COPY config ./config
 COPY scripts ./scripts
 COPY weights ./weights
+COPY .env .
 
-# Install the dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Install the dependencies including gunicorn
+RUN pip install --no-cache-dir -r requirements.txt && \
+    pip install gunicorn
 
 # Expose the port on which the Gunicorn server will run
 EXPOSE 8000
