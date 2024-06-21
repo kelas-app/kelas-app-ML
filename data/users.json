@@ -1,0 +1,788 @@
+[{
+  "_id": {
+    "$oid": "6665e9847aa0dfec0ad43b26"
+  },
+  "firstname": "Machine",
+  "lastname": "Learning",
+  "username": "machinelearning",
+  "email": "ml@admin.com",
+  "phone": "7777777777",
+  "password": "$2a$10$oNSoSQcmxvHAefk5dKx0UuJw8oSdGeCumA.ZqINQM/pQv0XZX8vdm",
+  "address": "Bangkit Capstone",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "seller",
+  "createdat": {
+    "$date": "2024-06-09T17:42:28.211Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-09T17:42:28.211Z"
+  },
+  "ratings": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6665eab57aa0dfec0ad43b2a"
+  },
+  "firstname": "John",
+  "lastname": "Doe",
+  "username": "zxczxczxczxc",
+  "email": "dummydata1@admin.com",
+  "phone": "23523525253",
+  "password": "$2a$10$ihldsbescWBR9v94/sRhReBpX8mZMGrRpwkUohUcGfG6NhV3g4squ",
+  "address": "123 Main St",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "createdat": {
+    "$date": "2024-06-09T17:47:33.477Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-09T17:47:33.477Z"
+  },
+  "ratings": [],
+  "__v": 0,
+  "nik": ""
+},
+{
+  "_id": {
+    "$oid": "6665eac87aa0dfec0ad43b2d"
+  },
+  "firstname": "DummyFirstname",
+  "lastname": "DummyLastname",
+  "username": "dummydata2",
+  "email": "dummydata2@admin.com",
+  "phone": "777777770002",
+  "password": "$2a$10$IipmxQztB7MnyyTVUka6n.IK9C/wdqcEf8SXZjDeP5AeBLCd0x7Xi",
+  "address": "Dummy Address 2",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "seller",
+  "createdat": {
+    "$date": "2024-06-09T17:47:52.685Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-09T17:47:52.685Z"
+  },
+  "ratings": [],
+  "__v": 0,
+  "nik": "1234567890123333"
+},
+{
+  "_id": {
+    "$oid": "6665eacc7aa0dfec0ad43b30"
+  },
+  "firstname": "DummyFirstname",
+  "lastname": "DummyLastname",
+  "username": "dummydata3",
+  "email": "dummydata3@admin.com",
+  "phone": "777777770003",
+  "password": "$2a$10$mQEfWkNV4c6.E6glZRmlyuNzrAVKctoLLXMv2pK/pZVvbBiyCiIIi",
+  "address": "Dummy Address 3",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "createdat": {
+    "$date": "2024-06-09T17:47:56.118Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-09T17:47:56.118Z"
+  },
+  "ratings": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6665eacf7aa0dfec0ad43b33"
+  },
+  "firstname": "DummyFirstname",
+  "lastname": "DummyLastname",
+  "username": "dummydata4",
+  "email": "dummydata4@admin.com",
+  "phone": "777777770004",
+  "password": "$2a$10$GYFAH4GoxInzAr8WkAeUEuLTYD5ZLjFumTyR2ZP93FlIPke8yOcTq",
+  "address": "Dummy Address 4",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "createdat": {
+    "$date": "2024-06-09T17:47:59.747Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-09T17:47:59.747Z"
+  },
+  "ratings": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6665ead27aa0dfec0ad43b36"
+  },
+  "firstname": "DummyFirstname",
+  "lastname": "DummyLastname",
+  "username": "dummydata5",
+  "email": "dummydata5@admin.com",
+  "phone": "777777770005",
+  "password": "$2a$10$z/vPwrf6R91og.T.e3EgcOqtpAC72FMRDcM5K1MyDi5R1kG.9nKOK",
+  "address": "Dummy Address 5",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "createdat": {
+    "$date": "2024-06-09T17:48:02.382Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-09T17:48:02.382Z"
+  },
+  "ratings": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6665ead47aa0dfec0ad43b39"
+  },
+  "firstname": "DummyFirstname",
+  "lastname": "DummyLastname",
+  "username": "dummydata6",
+  "email": "dummydata6@admin.com",
+  "phone": "777777770006",
+  "password": "$2a$10$Ie6FM9NIp1RjMMIiODmlquwRlbUuImZ.40aErTOmyf2BmjSyY1AYu",
+  "address": "Dummy Address 6",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "createdat": {
+    "$date": "2024-06-09T17:48:04.398Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-09T17:48:04.398Z"
+  },
+  "ratings": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6665ead67aa0dfec0ad43b3c"
+  },
+  "firstname": "DummyFirstname",
+  "lastname": "DummyLastname",
+  "username": "dummydata7",
+  "email": "dummydata7@admin.com",
+  "phone": "777777770007",
+  "password": "$2a$10$j5s8n2mIMeeOFyjXy1kWA.ko0E7oBqtRWW1HNKl3.j1K6EPXaPEI.",
+  "address": "Dummy Address 7",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "createdat": {
+    "$date": "2024-06-09T17:48:06.818Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-09T17:48:06.818Z"
+  },
+  "ratings": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6665ead97aa0dfec0ad43b3f"
+  },
+  "firstname": "DummyFirstname",
+  "lastname": "DummyLastname",
+  "username": "dummydata8",
+  "email": "dummydata8@admin.com",
+  "phone": "777777770008",
+  "password": "$2a$10$kjo7zB7/.y7uvYqaq9HWietlsopcPaImPs7dlvMytA7C7s9laa/OK",
+  "address": "Dummy Address 8",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "createdat": {
+    "$date": "2024-06-09T17:48:09.151Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-09T17:48:09.151Z"
+  },
+  "ratings": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6665eadc7aa0dfec0ad43b42"
+  },
+  "firstname": "DummyFirstname",
+  "lastname": "DummyLastname",
+  "username": "dummydata9",
+  "email": "dummydata9@admin.com",
+  "phone": "777777770009",
+  "password": "$2a$10$OHHQ/vYRDgjQpS/kyAKjDeXQk1boM.6dHW1Oj06UunIn.G2wkvRju",
+  "address": "Dummy Address 9",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "createdat": {
+    "$date": "2024-06-09T17:48:12.771Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-09T17:48:12.771Z"
+  },
+  "ratings": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6665eae07aa0dfec0ad43b45"
+  },
+  "firstname": "DummyFirstname",
+  "lastname": "DummyLastname",
+  "username": "dummydata10",
+  "email": "dummydata10@admin.com",
+  "phone": "777777770010",
+  "password": "$2a$10$zERx5aFVLbM8g6LRrd8CD.iUYwHRI.n8DrP3CGe0ws5svSnP4cRqu",
+  "address": "Dummy Address 10",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "createdat": {
+    "$date": "2024-06-09T17:48:16.912Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-09T17:48:16.912Z"
+  },
+  "ratings": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6665eb647aa0dfec0ad43b49"
+  },
+  "firstname": "DummyFirstname",
+  "lastname": "DummyLastname",
+  "username": "dummydata11",
+  "email": "dummydata11@admin.com",
+  "phone": "777777770011",
+  "password": "$2a$10$FnzpvHcZwJlLf32K1l7iB./Ky7JS8T9yEgfZjYYwsepCY2GNXeo1K",
+  "address": "Dummy Address 11",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "createdat": {
+    "$date": "2024-06-09T17:50:28.951Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-09T17:50:28.951Z"
+  },
+  "ratings": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6665eb827aa0dfec0ad43b4c"
+  },
+  "firstname": "DummyFirstname",
+  "lastname": "DummyLastname",
+  "username": "dummydata12",
+  "email": "dummydata12@admin.com",
+  "phone": "777777770012",
+  "password": "$2a$10$3ljXGVGQezGQ7egQ8Ppql.9dS.brQIVKRk.xqBAyUsbY2Q6U5eguC",
+  "address": "Dummy Address 12",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "createdat": {
+    "$date": "2024-06-09T17:50:58.235Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-09T17:50:58.235Z"
+  },
+  "ratings": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6665eb877aa0dfec0ad43b4f"
+  },
+  "firstname": "DummyFirstname",
+  "lastname": "DummyLastname",
+  "username": "dummydata13",
+  "email": "dummydata13@admin.com",
+  "phone": "777777770013",
+  "password": "$2a$10$020A9xl0ORFR8Hoa82l0EeFr7JUWwKM2ttuhLIXQmBbNA1wkBMmSO",
+  "address": "Dummy Address 13",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "createdat": {
+    "$date": "2024-06-09T17:51:03.284Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-09T17:51:03.284Z"
+  },
+  "ratings": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6665eb8d7aa0dfec0ad43b52"
+  },
+  "firstname": "DummyFirstname",
+  "lastname": "DummyLastname",
+  "username": "dummydata14",
+  "email": "dummydata14@admin.com",
+  "phone": "777777770014",
+  "password": "$2a$10$eAoFGpngKcC0T6jyRrBpO.TpI5cPxuV.RSCTKdyzcbRtER0QuoNwK",
+  "address": "Dummy Address 14",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "createdat": {
+    "$date": "2024-06-09T17:51:09.859Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-09T17:51:09.859Z"
+  },
+  "ratings": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6665eb947aa0dfec0ad43b55"
+  },
+  "firstname": "DummyFirstname",
+  "lastname": "DummyLastname",
+  "username": "dummydata15",
+  "email": "dummydata15@admin.com",
+  "phone": "777777770015",
+  "password": "$2a$10$v0VpmzpaeTTrSa8048egGO0IYGeuO1PZMZMrumduLhMi5PiWYWJUO",
+  "address": "Dummy Address 15",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "createdat": {
+    "$date": "2024-06-09T17:51:16.829Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-09T17:51:16.829Z"
+  },
+  "ratings": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6665eb977aa0dfec0ad43b58"
+  },
+  "firstname": "DummyFirstname",
+  "lastname": "DummyLastname",
+  "username": "dummydata16",
+  "email": "dummydata16@admin.com",
+  "phone": "777777770016",
+  "password": "$2a$10$f5zpHkLszbyFAZK3A38zmOTi7B//5R1uNYTQUSRMT4QW5etRyvy/O",
+  "address": "Dummy Address 16",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "createdat": {
+    "$date": "2024-06-09T17:51:19.956Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-09T17:51:19.956Z"
+  },
+  "ratings": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6665eb9a7aa0dfec0ad43b5b"
+  },
+  "firstname": "DummyFirstname",
+  "lastname": "DummyLastname",
+  "username": "dummydata17",
+  "email": "dummydata17@admin.com",
+  "phone": "777777770017",
+  "password": "$2a$10$EsfU1NU4yQsYvwG/payP6eSbfKspOdHBtCMQaf6wDBVnqC9FTwylO",
+  "address": "Dummy Address 17",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "createdat": {
+    "$date": "2024-06-09T17:51:22.680Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-09T17:51:22.680Z"
+  },
+  "ratings": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6665eb9d7aa0dfec0ad43b5e"
+  },
+  "firstname": "DummyFirstname",
+  "lastname": "DummyLastname",
+  "username": "dummydata18",
+  "email": "dummydata18@admin.com",
+  "phone": "777777770018",
+  "password": "$2a$10$b1W9et02womzN9rzRz9Ce.skpsDyA3auPajcjasompfRifLEV7iA6",
+  "address": "Dummy Address 18",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "createdat": {
+    "$date": "2024-06-09T17:51:25.102Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-09T17:51:25.102Z"
+  },
+  "ratings": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6665eb9f7aa0dfec0ad43b61"
+  },
+  "firstname": "DummyFirstname",
+  "lastname": "DummyLastname",
+  "username": "dummydata19",
+  "email": "dummydata19@admin.com",
+  "phone": "777777770019",
+  "password": "$2a$10$O2wMszQ9QX8.ejNN3fyG3.lgf.3EpbIqASnmfW6nTEpjnsF2IqE7O",
+  "address": "Dummy Address 19",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "createdat": {
+    "$date": "2024-06-09T17:51:27.325Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-09T17:51:27.325Z"
+  },
+  "ratings": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6665eba17aa0dfec0ad43b64"
+  },
+  "firstname": "DummyFirstname",
+  "lastname": "DummyLastname",
+  "username": "dummydata20",
+  "email": "dummydata20@admin.com",
+  "phone": "777777770020",
+  "password": "$2a$10$OpYIwV.GucRamiSVBUBPouA14/5oCm1m.2ZZOvz3oFYrfF6dk2kKq",
+  "address": "Dummy Address 20",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "createdat": {
+    "$date": "2024-06-09T17:51:29.960Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-09T17:51:29.960Z"
+  },
+  "ratings": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6669600b63d6f47778bfcc8a"
+  },
+  "firstname": "DummyFirstname",
+  "lastname": "DummyLastname",
+  "username": "dummydata21",
+  "email": "dummydata21@admin.com",
+  "phone": "777777770021",
+  "password": "$2a$10$OpYIwV.GucRamiSVBUBPouA14/5oCm1m.2ZZOvz3oFYrfF6dk2kKq",
+  "address": "Dummy Address 21",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "createdat": {
+    "$date": "2024-06-09T17:51:29.960Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-09T17:51:29.960Z"
+  },
+  "ratings": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6669630563d6f47778bfcc8b"
+  },
+  "firstname": "John",
+  "lastname": "Doe",
+  "username": "john_doe_updated",
+  "email": "dummydata22@admin.com",
+  "phone": "1234567890",
+  "password": "$2a$10$OpYIwV.GucRamiSVBUBPouA14/5oCm1m.2ZZOvz3oFYrfF6dk2kKq",
+  "address": "123 Main St",
+  "avatar": "/uploads/default_avatar.png",
+  "createdat": {
+    "$date": "2024-06-09T17:51:29.960Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-09T17:51:29.960Z"
+  },
+  "ratings": [
+    {
+      "value": 4.5,
+      "comment": "Great seller!",
+      "_id": {
+        "$oid": "66704dc4cb309331822af447"
+      }
+    }
+  ],
+  "__v": 1,
+  "role": "buyer",
+  "nik": ""
+},
+{
+  "_id": {
+    "$oid": "666a98a8d1fbac1e9d0538e2"
+  },
+  "firstname": "John",
+  "lastname": "Doe",
+  "username": "zxczxxczxc",
+  "email": "xxxxx@example.com",
+  "phone": "45745745745",
+  "password": "$2a$10$dcapSgMcMNfQO6uzj4Hn8.AqW1hNYGXD0RdYOAxSbq1jpc7E6iQJi",
+  "address": "123 Main St",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "createdat": {
+    "$date": "2024-06-13T06:58:48.812Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-13T06:58:48.812Z"
+  },
+  "ratings": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "666b251ed1fbac1e9d0538e9"
+  },
+  "firstname": "John",
+  "lastname": "Doe",
+  "username": "akususkes2sakususkes2s",
+  "email": "akususkses2@example.com",
+  "phone": "45656222222",
+  "password": "$2a$10$SKmItNOIH9Uu2gg8QfkJ2OLe2l2NocrV8Zbsjp/IRWtFPM9g7D7wa",
+  "address": "akususkes2s",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "createdat": {
+    "$date": "2024-06-13T16:58:06.571Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-13T16:58:06.572Z"
+  },
+  "ratings": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "666d9663d1fbac1e9d053937"
+  },
+  "firstname": "ahmad",
+  "lastname": "jojon",
+  "username": "jojon2",
+  "email": "jojon@gmail.com",
+  "phone": "08123123123",
+  "password": "$2a$10$KYlRzL5.XruCWksBfKyRrusoV4tw1i7yq7AvnorWk5H.3FHouiVfa",
+  "address": "jl in aja dulu lah yaw",
+  "avatar": "/uploads/default_avatar.png",
+  "createdat": {
+    "$date": "2024-06-15T13:25:55.316Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-15T13:25:55.316Z"
+  },
+  "ratings": [],
+  "__v": 0,
+  "role": "buyer",
+  "nik": ""
+},
+{
+  "_id": {
+    "$oid": "666ea28cd1fbac1e9d053a39"
+  },
+  "firstname": "Cloud",
+  "lastname": "Computing",
+  "username": "cloudcomputing",
+  "email": "cc@admin.com",
+  "phone": "77777772777",
+  "password": "$2a$10$gTY8ZbXtEky2mR3F8S4OReWClQ.gJrR2V8P7DiPfXWUHWBRnitde6",
+  "address": "Bangkit Capstone",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "createdat": {
+    "$date": "2024-06-16T08:30:04.567Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-16T08:30:04.567Z"
+  },
+  "ratings": [],
+  "__v": 0,
+  "nik": ""
+},
+{
+  "_id": {
+    "$oid": "666ecee040db965261bc45c4"
+  },
+  "firstname": "agus",
+  "lastname": "suga",
+  "username": "agustinus",
+  "email": "agus@gmail.com",
+  "phone": "08935273617362",
+  "password": "$2a$10$1V69Q.hIftHVzs38AbS5UO40ZVhm5OYGP7F1CpW5jR2jhK4jbSYNG",
+  "address": "Jl bondowoso",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "createdat": {
+    "$date": "2024-06-16T11:39:12.144Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-16T11:39:12.144Z"
+  },
+  "ratings": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "666eddd0d4b4b6df51fe98dc"
+  },
+  "firstname": "pablo",
+  "lastname": "escobar",
+  "username": "pab;o",
+  "email": "pablo@gmail.com",
+  "phone": "08382747264781",
+  "password": "$2a$10$LTUeH8YhS7qKEsL1IlTHKOtimlbbzLXdXM4lUzrR575nqfBb3W3ay",
+  "address": "Jl simpang timur",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "createdat": {
+    "$date": "2024-06-16T12:42:56.146Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-16T12:42:56.146Z"
+  },
+  "ratings": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6671bd1e975c96626c7a68df"
+  },
+  "firstname": "ahmad",
+  "lastname": "gendewaasdasdasd",
+  "username": "genlordzsellerniboz",
+  "email": "dewas@example.com",
+  "phone": "08123123123123",
+  "password": "$2a$10$UkvrVkwoGKoYJOclT5wDGOEY97ZDIIhqobjEUjZGsFYyYb/m9JVrO",
+  "address": "cimindoy",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "seller",
+  "createdat": {
+    "$date": "2024-06-18T17:00:14.840Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-18T17:00:14.840Z"
+  },
+  "ratings": [],
+  "__v": 0,
+  "nik": "1234567890123456"
+},
+{
+  "_id": {
+    "$oid": "66727d0fd10cb41f00666401"
+  },
+  "firstname": "halo",
+  "lastname": "ganteng",
+  "username": "genlordzzz",
+  "email": "genlord@example.com",
+  "phone": "08182973891273891279",
+  "password": "$2a$10$E/W2N7RgtyLw0E7..KJDKO4v2tyVnl/er5DU.6EoT2PCgsb4aEFca",
+  "address": "jl in aja dlu lah ya semoga beres amin",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "seller",
+  "nik": "1234567890123456",
+  "createdat": {
+    "$date": "2024-06-19T06:39:11.409Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-19T06:39:11.409Z"
+  },
+  "ratings": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6672948605518bfe79912a0a"
+  },
+  "firstname": "Coba",
+  "lastname": "Lagi",
+  "username": "cobalagi",
+  "email": "cl@admin.com",
+  "phone": "777277772777",
+  "password": "$2a$10$8En8Pk/1hAQUylEi3X4HfuGCmdFmGJYAbBVn.hMA6vRFcj24kMjiG",
+  "address": "Banskit Capstone",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "nik": "",
+  "createdat": {
+    "$date": "2024-06-19T08:19:18.023Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-19T08:19:18.024Z"
+  },
+  "ratings": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "667296e605518bfe79912a13"
+  },
+  "firstname": "bola",
+  "lastname": "basket",
+  "username": "bolabasket",
+  "email": "bola@gmail.com",
+  "phone": "12345678910",
+  "password": "$2a$10$D8GXNHTkBPHwoYN97p.i3Oh.ugEwbRrfZvs85cVSc9tV2YtqFLE6W",
+  "address": "Jl Bunga-bunga",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "createdat": {
+    "$date": "2024-06-19T08:29:26.965Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-19T08:29:26.965Z"
+  },
+  "ratings": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66729b7ef499c10bfb266bd2"
+  },
+  "firstname": "ahmad",
+  "lastname": "jojon",
+  "username": "jojon3",
+  "email": "jojo3@gmail.com",
+  "phone": "02123123123",
+  "password": "$2a$10$KYlRzL5.XruCWksBfKyRrusoV4tw1i7yq7AvnorWk5H.3FHouiVfa",
+  "address": "jl in aja dulu lah yaw",
+  "avatar": "/uploads/default_avatar.png",
+  "createdat": {
+    "$date": "2024-06-15T13:25:55.316Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-15T13:25:55.316Z"
+  },
+  "ratings": [],
+  "__v": 0,
+  "role": "buyer",
+  "nik": ""
+},
+{
+  "_id": {
+    "$oid": "6674c5d8d8f9eae4d6746752"
+  },
+  "firstname": "Aku",
+  "lastname": "Tamvan",
+  "username": "INI DEWA BUYER",
+  "email": "dewa@example.com",
+  "phone": "08678213681273",
+  "password": "$2a$10$OUidtBdu4q7FCEn93OVgTu2TTgYi1XcrOv1W4ckA9VUYes2DdOf/q",
+  "address": "123 Main St",
+  "avatar": "/uploads/default_avatar.png",
+  "role": "buyer",
+  "nik": "",
+  "createdat": {
+    "$date": "2024-06-21T00:14:16.515Z"
+  },
+  "updatedat": {
+    "$date": "2024-06-21T00:14:16.515Z"
+  },
+  "ratings": [],
+  "__v": 0
+}]
